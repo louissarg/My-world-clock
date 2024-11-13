@@ -3,7 +3,7 @@ function updateTime() {
   if (newcastleElement) {
     let newcastleDateElement = newcastleElement.querySelector(".date");
     let newcastleTimeElement = newcastleElement.querySelector(".time");
-    let newcastleTime = moment().tz("Africa/newcastle");
+    let newcastleTime = moment().tz("Africa/Johannesburg");
 
     newcastleDateElement.innerHTML = newcastleTime.format("MMMM Do YYYY");
     newcastleTimeElement.innerHTML = newcastleTime.format(
@@ -15,7 +15,7 @@ function updateTime() {
   if (kokstadElement) {
     let kokstadDateElement = kokstadElement.querySelector(".date");
     let kokstadTimeElement = kokstadElement.querySelector(".time");
-    let kokstadTime = moment().tz("Africa/kokstad");
+    let kokstadTime = moment().tz("Africa/Johannesburg");
 
     kokstadDateElement.innerHTML = kokstadTime.format("MMMM Do YYYY");
     kokstadTimeElement.innerHTML = kokstadTime.format(
@@ -24,10 +24,7 @@ function updateTime() {
   }
 }
 function updatecity(event) {
-  let cityTimeZone = event.target.value;
-  if (cityTimeZone === "current") {
-    cityTimeZone = moment.tz.guess();
-  }
+  let cityTimeZone = event.target.value || "Africa/johannesburg";
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
@@ -40,11 +37,12 @@ function updatecity(event) {
   <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format(
     "A"
   )}</small></div>
-  </div>`;
+  </div>
+  `;
 }
 
 updateTime();
 setInterval(updateTime, 1000);
 
-let citiesElement = document.querySelector("#city");
-citiesElement.addEventListener("change", updateCity);
+let citiesSelectElement = document.querySelector("#city");
+citiesSelectElement.addEventListener("change", updatecity);
