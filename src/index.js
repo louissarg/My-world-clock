@@ -7,7 +7,7 @@ function updateTime() {
 
     newcastleDateElement.innerHTML = newcastleTime.format("MMMM Do YYYY");
     newcastleTimeElement.innerHTML = newcastleTime.format(
-      "h:mm:ss <small>A</small>"
+      "h:mm:ss [<small>]A[</small>]"
     );
   }
 
@@ -19,7 +19,7 @@ function updateTime() {
 
     kokstadDateElement.innerHTML = kokstadTime.format("MMMM Do YYYY");
     kokstadTimeElement.innerHTML = kokstadTime.format(
-      "h:mm:ss <small>A</small>"
+      "h:mm:ss [<small>]A[</small>]"
     );
   }
 }
