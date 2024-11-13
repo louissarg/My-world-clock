@@ -7,7 +7,7 @@ function updateTime() {
 
     newcastleDateElement.innerHTML = newcastleTime.format("MMMM Do YYYY");
     newcastleTimeElement.innerHTML = newcastleTime.format(
-      "h:mm:ss [<small>]A[</small>]"
+      "h:mm:ss <small>A</small>"
     );
   }
 
@@ -19,12 +19,15 @@ function updateTime() {
 
     kokstadDateElement.innerHTML = kokstadTime.format("MMMM Do YYYY");
     kokstadTimeElement.innerHTML = kokstadTime.format(
-      "h:mm:ss [<small>]A[</small>]"
+      "h:mm:ss <small>A</small>"
     );
   }
 }
 function updatecity(event) {
-  let cityTimeZone = event.target.value || "Africa/johannesburg";
+  let cityTimeZone = event.target.value || "Africa/Johannesburg";
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+  }
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
